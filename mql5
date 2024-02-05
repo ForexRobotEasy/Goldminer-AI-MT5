@@ -1,0 +1,89 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                              Goldminer AI MT5   |
+//|                             Developed by Forex Robot Easy Team    |
+//|                             Website: forexroboteasy.com          |
+//+------------------------------------------------------------------+
+
+// Define necessary settings and variables
+input double riskPercentage = 2.0; // Risk percentage per trade
+input int stopLossPips = 50; // Stop loss in pips
+input int takeProfitPips = 100; // Take profit in pips
+
+int OnInit()
+{
+    // Initialize the Goldminer AI MT5 software
+    // Connect to the Forex market data feed
+    // Set up artificial intelligence algorithms
+    // Load historical data for analysis
+    return(INIT_SUCCEEDED);
+}
+
+void OnTick()
+{
+    // Perform real-time market analysis
+    // Identify potential trading opportunities
+
+    // Check if a trading opportunity is identified
+    if (IsTradingOpportunity())
+    {
+        // Get entry and exit points for the trade
+        double entryPrice = GetEntryPrice();
+        double stopLossPrice = entryPrice - stopLossPips * Point;
+        double takeProfitPrice = entryPrice + takeProfitPips * Point;
+        
+        // Calculate position size based on risk percentage
+        double riskAmount = AccountEquity() * riskPercentage / 100;
+        double positionSize = riskAmount / (stopLossPrice - entryPrice);
+        
+        // Place the trade
+        if (BuyTradeAllowed())
+        {
+            double slippage = MarketInfo(Symbol(), MODE_TICKSIZE) * 3;
+            int ticket = OrderSend(Symbol(), OP_BUY, positionSize, entryPrice, slippage, stopLossPrice, takeProfitPrice, 'Goldminer AI MT5', MagicNumber(), 0, Green);
+            
+            if (ticket > 0)
+            {
+                // Trade placed successfully
+                // Monitor the trade and manage accordingly
+                // ...
+            }
+            else
+            {
+                // Failed to place the trade
+                // Handle error and log the details
+                // ...
+            }
+        }
+    }
+}
+
+bool IsTradingOpportunity()
+{
+    // Implement the market analysis and trend identification logic
+    // Return true if a trading opportunity is identified, otherwise false
+    // ...
+}
+
+double GetEntryPrice()
+{
+    // Implement the logic to calculate the entry price
+    // Return the calculated entry price
+    // ...
+}
+
+bool BuyTradeAllowed()
+{
+    // Implement the logic to check if buying is allowed
+    // Return true if buying is allowed, otherwise false
+    // ...
+}
+
+int MagicNumber()
+{
+    // Implement the logic to generate a unique magic number for the trade
+    // Return the generated magic number
+    // ...
+}
+
+//+------------------------------------------------------------------+
